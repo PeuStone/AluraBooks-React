@@ -9,6 +9,10 @@
     max-width: 100%;
 }
 
+.corpoModalCadastro label {
+    margin: 10px;
+}
+
 .corpoModalCadastro form .acoes {
     margin-top: 48px;
     text-align: center;
