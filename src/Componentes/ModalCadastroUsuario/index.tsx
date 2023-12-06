@@ -46,7 +46,7 @@ const ModalCadastroUsuario = ({ aberta, aoFechar }: PropsModalCadastroUsuario) =
                 aoFechar()
             })
             .catch(() => {
-                alert('OPS¹ Alguma coisa deu errado!')
+                alert('OPS! Alguma coisa deu errado!')
             })
     }
 

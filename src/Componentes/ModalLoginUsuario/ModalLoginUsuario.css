@@ -1,0 +1,19 @@
+.corpoModalLogin {
+    display: flex;
+    align-items: center;
+    padding-top: 32px;
+}
+
+.corpoModalLogin form {
+    width: 500px;
+    max-width: 100%;
+}
+
+.corpoModalLogin label {
+    margin: 10px;
+}
+
+.corpoModalLogin form .acoes {
+    margin-top: 48px;
+    text-align: center;
+}
