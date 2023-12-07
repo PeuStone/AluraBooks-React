@@ -3,6 +3,7 @@ import imagemPrincipal from './assets/login.png'
 import { useState } from "react"
 import axios from 'axios'
 import './ModalLoginUsuario.css'
+import { usePersistirToken } from "../../hooks"
 
 interface PropsModalLoginUsuario {
     aberta: boolean
@@ -14,6 +15,8 @@ const ModalLoginUsuario = ({ aberta, aoFechar }: PropsModalLoginUsuario) => {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
+    const setToken = usePersistirToken()
+
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
         const usuario = {
@@ -23,7 +26,7 @@ const ModalLoginUsuario = ({ aberta, aoFechar }: PropsModalLoginUsuario) => {
 
         axios.post('http://localhost:8000/public/login', usuario)
             .then(resposta => {
-                sessionStorage.setItem('token', resposta.data.access_token)
+                setToken(resposta.data.access_token)
                 setEmail('')
                 setSenha('')
                 aoFechar()
