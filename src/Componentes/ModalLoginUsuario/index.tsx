@@ -8,9 +8,10 @@ import { usePersistirToken } from "../../hooks"
 interface PropsModalLoginUsuario {
     aberta: boolean
     aoFechar: () => void
+    aoEfetuarLogin: () => void
 }
 
-const ModalLoginUsuario = ({ aberta, aoFechar }: PropsModalLoginUsuario) => {
+const ModalLoginUsuario = ({ aberta, aoFechar, aoEfetuarLogin }: PropsModalLoginUsuario) => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
@@ -29,7 +30,7 @@ const ModalLoginUsuario = ({ aberta, aoFechar }: PropsModalLoginUsuario) => {
                 setToken(resposta.data.access_token)
                 setEmail('')
                 setSenha('')
-                aoFechar()
+                aoEfetuarLogin()
             })
             .catch(erro => {
                 if (erro?.response?.data?.message) {
