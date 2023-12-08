@@ -13,3 +13,15 @@
     border-bottom: 1px solid #002F52;
     padding: 12px;
 }
+
+.pedido__botao {
+    padding: 8px;
+    border: none;
+    background: #EB9B00;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.pedido__botao:hover {
+    background: #B87900;
+}
