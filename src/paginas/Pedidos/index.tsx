@@ -1,8 +1,24 @@
 import { AbBotao } from "alurabooksbase"
-
+import axios from 'axios'
 import './Pedidos.css'
+import { useEffect } from "react"
+import { useObterToken } from "../../hooks"
+import { IPedido } from "../../interfaces/IPedido"
 
 const Pedidos = () => {
+
+    const token = useObterToken()
+
+    useEffect(() => {
+        axios.get<IPedido[]>('http://localhost:8000/pedidos', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(resposta => console.log(resposta.data))
+            .catch(erro => console.log(erro)
+            )
+    }, [])
+
     return (
         <section className="pedidos">
             <h1>Meus Pedidos</h1>
