@@ -14,13 +14,9 @@ const Pedidos = () => {
     const token = useObterToken()
 
     useEffect(() => {
-        http.get<IPedido[]>('pedidos', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(resposta => setPedidos(resposta.data))
-            .catch(erro => console.log(erro)
-            )
+        http.get<IPedido[]>('pedidos')
+            .then(resposta => setPedidos(resposta.data))
+            .catch(erro => console.log(erro))
     }, [])
 
     const excluirPedido = (pedido: IPedido) => {
