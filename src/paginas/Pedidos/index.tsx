@@ -1,9 +1,9 @@
 import { AbBotao } from "alurabooksbase"
-import axios from 'axios'
 import './Pedidos.css'
 import { useEffect, useState } from "react"
 import { useObterToken } from "../../hooks"
 import { IPedido } from "../../interfaces/IPedido"
+import http from "../../http"
 
 const Pedidos = () => {
 
@@ -14,7 +14,7 @@ const Pedidos = () => {
     const token = useObterToken()
 
     useEffect(() => {
-        axios.get<IPedido[]>('http://localhost:8000/pedidos', {
+        http.get<IPedido[]>('pedidos', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -24,7 +24,7 @@ const Pedidos = () => {
     }, [])
 
     const excluirPedido = (pedido: IPedido) => {
-        axios.delete<IPedido[]>('http://localhost:8000/pedidos/' + pedido.id, {
+        http.delete<IPedido[]>('pedidos/' + pedido.id, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
