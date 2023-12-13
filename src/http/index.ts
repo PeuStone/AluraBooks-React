@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useObterToken } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 const http = axios.create({
     baseURL: 'http://localhost:8000',
@@ -19,6 +20,17 @@ http.interceptors.request.use(function (config) {
     console.log('Erro no interceptor do axios');
 
     return Promise.reject(erro)
+})
+
+http.interceptors.response.use(function (resposta) {
+    return resposta
+}, function (error: AxiosError) {
+    const navegar = useNavigate()
+    if (error.response?.status === 401) {
+        navegar('/')
+        return Promise.reject()
+    }
+    return Promise.reject(error)
 })
 
 export default http
