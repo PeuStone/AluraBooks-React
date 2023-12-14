@@ -4,16 +4,28 @@ import ModalCadastroUsuario from "../ModalCadastroUsuario"
 import logo from './assets/logo.svg'
 import usuario from './assets/usuario.svg'
 import './BarraNavegacao.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ModalLoginUsuario from "../ModalLoginUsuario"
 import { useLimparToken, useObterToken } from "../../hooks"
+import { ICategoria } from "../../interfaces/ICategoria"
+import http from "../../http"
 
 const BarraNavegacao = () => {
 
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false)
     const [modalLoginAberta, setModalLoginAberta] = useState(false)
+    const [categorias, setCategorias] = useState<ICategoria[]>([])
+
+    useEffect(() => {
+        http.get<ICategoria[]>('categorias')
+            .then(resposta => {
+                console.log(resposta.data)
+                setCategorias(resposta.data)
+            })
+    }, [])
 
     let navegar = useNavigate()
+
     const token = useObterToken()
     const [usuarioEstaLogado, setUsuarioEstaLogado] = useState<boolean>(token != null)
 
