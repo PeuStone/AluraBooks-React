@@ -14,6 +14,7 @@
 
 .LivrosDestaque ul.livros li {
     margin: 0 12px;
+    list-style-type: none;
 }
 
 .LivrosDestaque ul.livros li img {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import BotaoNavegacao from "../BotaoNavegacao"
 import ModalCadastroUsuario from "../ModalCadastroUsuario"
-import logo from './assets/logo.svg'
+import logo from './assets/Logo.svg'
 import usuario from './assets/usuario.svg'
 import './BarraNavegacao.css'
 import { useEffect, useState } from "react"
