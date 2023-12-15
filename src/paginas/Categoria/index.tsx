@@ -3,6 +3,7 @@ import TituloPrincipal from "../../Componentes/TituloPrincipal"
 import { ICategoria } from "../../interfaces/ICategoria"
 import http from "../../http"
 import { useParams } from "react-router-dom"
+import Loader from "../../Componentes/Loader"
 
 const Categoria = () => {
 
@@ -22,6 +23,7 @@ const Categoria = () => {
     return (
         <section>
             <TituloPrincipal texto={categoria?.nome ?? ''} />
+            <Loader />
         </section>
     )
 }
