@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { useObterToken } from "../hooks";
 import { useNavigate } from "react-router-dom";
+import { ICategoria } from "../interfaces/ICategoria";
 
 const http = axios.create({
     baseURL: 'http://localhost:8000',
@@ -34,3 +35,12 @@ http.interceptors.response.use(function (resposta) {
 })
 
 export default http
+
+export const obterCategoriaSlug = async (slug: string) => {
+    const resposta = await http.get<ICategoria[]>('categorias', {
+        params: {
+            slug
+        }
+    })
+    return resposta.data[0]
+}
