@@ -3,6 +3,7 @@ import { obterCategoriaSlug } from "../../http"
 import { useParams } from "react-router-dom"
 import Loader from "../../Componentes/Loader"
 import { useQuery } from "@tanstack/react-query"
+import ListaLivros from "../../Componentes/ListaLivros"
 
 const Categoria = () => {
 
@@ -17,6 +18,7 @@ const Categoria = () => {
     return (
         <section>
             <TituloPrincipal texto={categoria?.nome ?? ''} />
+            <ListaLivros categoria={categoria!} />
         </section>
     )
 }
