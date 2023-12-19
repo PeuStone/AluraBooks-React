@@ -9,7 +9,7 @@ const Categoria = () => {
 
     const params = useParams()
 
-    const { data: categoria, isLoading } = useQuery({ queryKey: ['CategoriaSlug'], queryFn: () => obterCategoriaSlug(params.slug || '') })
+    const { data: categoria, isLoading } = useQuery({ queryKey: ['CategoriaSlug', params.slug], queryFn: () => obterCategoriaSlug(params.slug || '') })
 
     if (isLoading) {
         return <Loader />
