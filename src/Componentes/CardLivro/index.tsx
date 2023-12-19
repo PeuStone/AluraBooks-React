@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { ILivro } from "../../interfaces/ILivro"
 import { formatador } from "../../utils/formatador-moeda"
 import { AbBotao } from "alurabooksbase"
+import './CardLivro.css'
 
 interface CardLivroProps {
     livro: ILivro

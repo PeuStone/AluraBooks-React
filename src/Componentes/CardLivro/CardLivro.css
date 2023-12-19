@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.livro li {
+    list-style-type: none;
+}
+
 .livro {
     display: flex;
     flex-direction: column;
