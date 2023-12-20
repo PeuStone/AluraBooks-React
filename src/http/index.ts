@@ -3,6 +3,7 @@ import { useObterToken } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import { ICategoria } from "../interfaces/ICategoria";
 import { ILivro } from "../interfaces/ILivro";
+import { IAutor } from "../interfaces/IAutor";
 
 const http = axios.create({
     baseURL: 'http://localhost:8000',
@@ -58,4 +59,25 @@ export const obterProdutosDaCategoria = async (categoria: ICategoria) => {
         }
     })
     return resposta.data
+}
+
+export const obterLivro = async (slug: string) => {
+    const resposta = await http.get<ILivro[]>('livros', {
+        params: {
+            slug
+        }
+    })
+    if (resposta.data.length === 0) {
+        return null
+    }
+    return resposta.data[0]
+}
+
+export const obterAutor = async (autorId: number) => {
+    try {
+        const resposta = await http.get<IAutor>(`autores/${autorId} `)
+        return resposta.data
+    } catch (erro) {
+        console.log('Não foi possivel encontrar este autor');
+    }
 }
