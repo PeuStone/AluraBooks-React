@@ -1,0 +1,54 @@
+.detalhes-livro .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: 1038px;
+}
+
+.container .detalhes {
+    flex-direction: column;
+    gap: 45px;
+}
+
+.container .detalhes h2 {
+    color: #002F52;
+}
+
+.container .detalhes h3 {
+    color: #002F52;
+}
+
+.container .detalhes .opcoes {
+    display: flex;
+}
+
+.opcoes-texto {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+}
+
+.footer-quantidade {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+}
+
+.textos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 0px;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: 1038px;
+    margin: 40px auto;
+}
