@@ -10,6 +10,7 @@ import { useState } from "react"
 import SobreAutor from "../../Componentes/SobreAutor"
 import BlocoSobre from "../../Componentes/BlocoSobre"
 import './DetalhesLivro.css'
+import { AxiosError } from "axios"
 
 const DetalhesLivro = () => {
 
@@ -17,7 +18,16 @@ const DetalhesLivro = () => {
     const [quantidade, setQuantidade] = useState(1)
 
     const params = useParams()
-    const { data: livro, isLoading } = useQuery<ILivro | null>({ queryKey: ['livro', params.slug], queryFn: () => obterLivro(params.slug || '') })
+    const { data: livro, isLoading, error } = useQuery<ILivro | null, AxiosError>({ queryKey: ['livro', params.slug], queryFn: () => obterLivro(params.slug || '') })
+
+    if (error) {
+        console.log(error.message)
+        return <h1>Ops! Algum erro inesperado aconteceu</h1>
+    }
+
+    if (livro === null) {
+        return <h1>Livro não encontrado!</h1>
+    }
 
     if (isLoading || !livro) {
         return <Loader />
