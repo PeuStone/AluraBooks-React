@@ -3,7 +3,7 @@ import { ILivro } from "../../interfaces/ILivro"
 import { useParams } from "react-router-dom"
 import { obterLivro } from "../../http"
 import Loader from "../../Componentes/Loader"
-import { AbBotao, AbGrupoOpcao, AbGrupoOpcoes, AbQuantidade, AbQuantidadeProps } from "alurabooksbase"
+import { AbBotao, AbGrupoOpcao, AbGrupoOpcoes, AbQuantidade } from "alurabooksbase"
 import { formatador } from "../../utils/formatador-moeda"
 import TituloPrincipal from "../../Componentes/TituloPrincipal"
 import { useState } from "react"
@@ -14,7 +14,7 @@ import './DetalhesLivro.css'
 const DetalhesLivro = () => {
 
     const [opcao, setOpcao] = useState<AbGrupoOpcao>()
-    const [quantidade, setQuantidade] = useState<AbQuantidadeProps>()
+    const [quantidade, setQuantidade] = useState(1)
 
     const params = useParams()
     const { data: livro, isLoading } = useQuery<ILivro | null>({ queryKey: ['livro', params.slug], queryFn: () => obterLivro(params.slug || '') })
@@ -54,8 +54,8 @@ const DetalhesLivro = () => {
                         <footer className="footer-quantidade">
                             <div className="quantidade">
                                 <AbQuantidade
-                                    value={Number(quantidade)}
-                                    onChange={() => setQuantidade}
+                                    value={quantidade}
+                                    onChange={setQuantidade}
                                 />
                             </div>
                             <div>
