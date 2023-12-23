@@ -4,26 +4,28 @@ import ModalCadastroUsuario from "../ModalCadastroUsuario"
 import logo from './assets/Logo.svg'
 import usuario from './assets/usuario.svg'
 import './BarraNavegacao.css'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ModalLoginUsuario from "../ModalLoginUsuario"
 import { useLimparToken, useObterToken } from "../../hooks"
 import { ICategoria } from "../../interfaces/ICategoria"
-import http from "../../http"
+import { gql, useQuery } from "@apollo/client"
+
+const OBTER_CATEGORIA = gql`
+query ObterCategorias {
+    categorias{
+      id
+      slug
+      nome
+    }
+  }
+`
 
 const BarraNavegacao = () => {
 
     const [modalCadastroAberta, setModalCadastroAberta] = useState(false)
     const [modalLoginAberta, setModalLoginAberta] = useState(false)
-    const [categorias, setCategorias] = useState<ICategoria[]>([])
 
-    useEffect(() => {
-        http.get<ICategoria[]>('categorias')
-            .then(resposta => {
-                console.log(resposta.data)
-                setCategorias(resposta.data)
-            })
-    }, [])
-
+    const { data } = useQuery<{ categorias: ICategoria[] }>(OBTER_CATEGORIA)
     let navegar = useNavigate()
 
     const token = useObterToken()
@@ -50,7 +52,7 @@ const BarraNavegacao = () => {
             <li>
                 <a href="#!">Categorias</a>
                 <ul className="submenu">
-                    {categorias.map((categoria) => (
+                    {data?.categorias.map(categoria => (
                         <li key={categoria.id}>
                             <Link to={`/categorias/${categoria.slug}`}>
                                 {categoria.nome}
