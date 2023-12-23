@@ -3,9 +3,11 @@ import CardLivro from "../CardLivro"
 import './ListaLivros.css'
 import { gql, useQuery } from "@apollo/client"
 import { ILivro } from "../../interfaces/ILivro"
+import { AbBotao, AbCampoTexto } from "alurabooksbase"
+import { useState } from "react"
 
 interface ListaLivrosProps {
-    categoria: ICategoria
+  categoria: ICategoria
 }
 
 const OBTER_LIVROS = gql`
@@ -25,18 +27,27 @@ const OBTER_LIVROS = gql`
 
 const ListaLivros = ({ categoria }: ListaLivrosProps) => {
 
-    const { data } = useQuery<{ livros: ILivro[] }>(OBTER_LIVROS, {
-        variables: {
-            categoriaId: categoria.id
-        }
-    })
-    // const { data: produtos } = useQuery({ queryKey: ['buscaLivrosCategoria', categoria], queryFn: () => obterProdutosDaCategoria(categoria) })
+  const [textoBusca, setTextoBusca] = useState('')
+  const { data } = useQuery<{ livros: ILivro[] }>(OBTER_LIVROS, {
+    variables: {
+      categoriaId: categoria.id
+    }
+  })
+  // const { data: produtos } = useQuery({ queryKey: ['buscaLivrosCategoria', categoria], queryFn: () => obterProdutosDaCategoria(categoria) })
 
-    return (
-        <section className="livros">
-            {data?.livros.map(livro => <CardLivro livro={livro} key={livro.id} />)}
-        </section>
-    )
+  return (
+    <section>
+      <form className="busca-livros">
+        <AbCampoTexto value={textoBusca} onChange={setTextoBusca} label={""} placeholder="Digite o título" />
+        <div className="busca-botao">
+          <AbBotao texto="Buscar" />
+        </div>
+      </form>
+      <div className="livros">
+        {data?.livros.map(livro => <CardLivro livro={livro} key={livro.id} />)}
+      </div>
+    </section>
+  )
 }
 
 export default ListaLivros
