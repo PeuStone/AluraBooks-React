@@ -5,7 +5,7 @@ import { AbBotao, AbCampoTexto } from "alurabooksbase"
 import { useState } from "react"
 import { useLivros } from "../../graphql/livros/hooks"
 import { useReactiveVar } from "@apollo/client"
-import { livrosVar } from "../../graphql/livros/state"
+import { filtroLivrosVar, livrosVar } from "../../graphql/livros/state"
 
 interface ListaLivrosProps {
   categoria: ICategoria
@@ -14,26 +14,18 @@ interface ListaLivrosProps {
 const ListaLivros = ({ categoria }: ListaLivrosProps) => {
 
   const [textoBusca, setTextoBusca] = useState('')
+
+  filtroLivrosVar({
+    categoria,
+  })
+
   const livros = useReactiveVar(livrosVar)
-  console.log('livros =>', livros);
 
-  useLivros(categoria)
-
-  // const { data: produtos } = useQuery({ queryKey: ['buscaLivrosCategoria', categoria], queryFn: () => obterProdutosDaCategoria(categoria) })
-
-  const buscarLivros = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (textoBusca) {
-      // refetch({
-      //   categoriaId: categoria.id,
-      //   titulo: textoBusca
-      // })
-    }
-  }
+  useLivros()
 
   return (
     <section>
-      <form className="busca-livros" onSubmit={buscarLivros}>
+      <form className="busca-livros">
         <AbCampoTexto value={textoBusca} onChange={setTextoBusca} label={""} placeholder="Digite o título" />
         <div className="busca-botao">
           <AbBotao texto="Buscar" />
