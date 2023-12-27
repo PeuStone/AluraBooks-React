@@ -6,6 +6,7 @@ import { useState } from "react"
 import './DetalhesLivro.css'
 import { useLivro } from "../../graphql/livros/hooks"
 import Loader from "../../Componentes/Loader"
+import BlocoSobre from "../../Componentes/BlocoSobre"
 
 const DetalhesLivro = () => {
 
@@ -14,7 +15,13 @@ const DetalhesLivro = () => {
 
     const params = useParams()
 
-    const { data, loading } = useLivro(params.slug || '')
+    const { data, loading, error } = useLivro(params.slug || '')
+
+    if (error) {
+        console.log('Alguma coisa deu errado');
+        console.log(error)
+        return <h1>Ops! Algum erro inesperado aconteceu</h1>
+    }
 
     if (loading) {
         return <Loader />
@@ -60,6 +67,9 @@ const DetalhesLivro = () => {
                             </div>
                         </footer>
                     </div>
+                </div>
+                <div>
+                    <BlocoSobre titulo="Sobre o livro" corpo={data?.livro.sobre} />
                 </div>
             </div>
         </section>
