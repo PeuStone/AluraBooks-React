@@ -3,7 +3,7 @@ import { ILivro } from "../../interfaces/ILivro";
 import { ICategoria } from "../../interfaces/ICategoria";
 
 interface FiltroLivros {
-    categoria?: ICategoria,
+    categoria?: ICategoria
     titulo?: string
 }
 
