@@ -45,3 +45,29 @@ query ObterLancamentos {
   }
 }
 `
+export const OBTER_DETALHESLIVROS = gql`
+query ObterLivro($slug: String!) {
+  livro(slug: $slug) {
+    id
+    imagemCapa
+    descricao
+    titulo
+    slug
+    sobre
+    autor {
+      nome
+      sobre
+    }
+    opcoesCompra {
+      id
+      titulo
+      formatos
+      preco
+    }
+    tags {
+      id
+      nome
+    }
+  }
+}
+`
