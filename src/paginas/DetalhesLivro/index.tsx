@@ -69,6 +69,7 @@ const DetalhesLivro = () => {
                     </div>
                 </div>
                 <div>
+                    <BlocoSobre titulo="Sobre o autor" corpo={data?.livro.autor.sobre} />
                     <BlocoSobre titulo="Sobre o livro" corpo={data?.livro.sobre} />
                 </div>
             </div>
