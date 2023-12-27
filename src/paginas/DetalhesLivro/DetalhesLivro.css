@@ -52,3 +52,9 @@
     width: 1038px;
     margin: 40px auto;
 }
+
+.tags {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+}

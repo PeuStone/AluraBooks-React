@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { AbBotao, AbGrupoOpcao, AbGrupoOpcoes, AbQuantidade } from "alurabooksbase"
+import { AbBotao, AbGrupoOpcao, AbGrupoOpcoes, AbQuantidade, AbTags } from "alurabooksbase"
 import { formatador } from "../../utils/formatador-moeda"
 import TituloPrincipal from "../../Componentes/TituloPrincipal"
 import { useState } from "react"
@@ -71,6 +71,9 @@ const DetalhesLivro = () => {
                 <div>
                     <BlocoSobre titulo="Sobre o autor" corpo={data?.livro.autor.sobre} />
                     <BlocoSobre titulo="Sobre o livro" corpo={data?.livro.sobre} />
+                </div>
+                <div className="tags">
+                    {data?.livro.tags?.map(tag => <AbTags key={tag.nome} texto={tag.nome} contexto="secundario" />)}
                 </div>
             </div>
         </section>
