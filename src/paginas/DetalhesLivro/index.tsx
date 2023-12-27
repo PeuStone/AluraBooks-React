@@ -5,6 +5,7 @@ import TituloPrincipal from "../../Componentes/TituloPrincipal"
 import { useState } from "react"
 import './DetalhesLivro.css'
 import { useLivro } from "../../graphql/livros/hooks"
+import Loader from "../../Componentes/Loader"
 
 const DetalhesLivro = () => {
 
@@ -13,7 +14,11 @@ const DetalhesLivro = () => {
 
     const params = useParams()
 
-    const { data } = useLivro(params.slug || '')
+    const { data, loading } = useLivro(params.slug || '')
+
+    if (loading) {
+        return <Loader />
+    }
 
     const opcoes: AbGrupoOpcao[] = data?.livro.opcoesCompra ? data?.livro.opcoesCompra.map(opcao => ({
         id: opcao.id,
