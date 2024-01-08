@@ -28,7 +28,9 @@ query ObterLancamentos {
         id
         preco
       }
-      autorId   
+      autor {
+        nome
+      }   
     }
     maisVendidos {
       id
@@ -40,7 +42,9 @@ query ObterLancamentos {
         id
         preco
       }
-      autorId     
+      autor {
+        nome
+      }    
     }
   }
 }

@@ -38,7 +38,7 @@ const LivrosDestaque = ({ livros }: LivrosDestaqueProps) => {
                 </ul>
             </div>
             <AbCard>
-                <div className="selecionado-detalhes">
+                {selecionado && <div className="selecionado-detalhes">
                     <header>
                         <h5>Sobre o livro:</h5>
                     </header>
@@ -54,7 +54,7 @@ const LivrosDestaque = ({ livros }: LivrosDestaqueProps) => {
                             <AbBotao texto="Comprar" />
                         </div>
                     </footer>
-                </div>
+                </div>}
             </AbCard>
         </section>)
 
