@@ -8,7 +8,7 @@ import { useCarrinhoContext } from "../../contextApi/carrinho"
 
 const Carrinho = () => {
 
-    const { carrinho } = useCarrinhoContext()
+    const { carrinho, adicionarItemCarrinho } = useCarrinhoContext()
 
     return (
         <section className="pagina-carrinho">
