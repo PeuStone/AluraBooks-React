@@ -7,11 +7,14 @@ import './DetalhesLivro.css'
 import { useLivro } from "../../graphql/livros/hooks"
 import Loader from "../../Componentes/Loader"
 import BlocoSobre from "../../Componentes/BlocoSobre"
+import { useCarrinhoContext } from "../../contextApi/carrinho"
 
 const DetalhesLivro = () => {
 
     const [opcao, setOpcao] = useState<AbGrupoOpcao>()
     const [quantidade, setQuantidade] = useState(1)
+
+    const { adicionarItemCarrinho } = useCarrinhoContext()
 
     const params = useParams()
 
@@ -34,6 +37,22 @@ const DetalhesLivro = () => {
         rodape: opcao.formatos ? opcao.formatos.join(',') : ''
     }))
         : []
+
+    const aoAdicionarItemCarrinho = () => {
+        if (!data?.livro) {
+            return
+        }
+        const opcaoCompra = data.livro.opcoesCompra.find(op => op.id === opcao?.id)
+        if (!opcaoCompra) {
+            alert('Por Favor selecione uma opção de compra!')
+            return
+        }
+        adicionarItemCarrinho({
+            livro: data?.livro,
+            quantidade,
+            opcaoCompra
+        })
+    }
 
     return (
         <section className="detalhes-livro">
@@ -63,7 +82,7 @@ const DetalhesLivro = () => {
                                 />
                             </div>
                             <div>
-                                <AbBotao texto="Comprar" />
+                                <AbBotao texto="Comprar" onClick={aoAdicionarItemCarrinho} />
                             </div>
                         </footer>
                     </div>
