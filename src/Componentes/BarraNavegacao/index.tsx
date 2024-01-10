@@ -9,6 +9,7 @@ import ModalLoginUsuario from "../ModalLoginUsuario"
 import { useLimparToken, useObterToken } from "../../hooks"
 import { ICategoria } from "../../interfaces/ICategoria"
 import { gql, useQuery } from "@apollo/client"
+import MiniCarrinho from "../MiniCarrinho"
 
 const OBTER_CATEGORIA = gql`
 query ObterCategorias {
@@ -97,6 +98,9 @@ const BarraNavegacao = () => {
                 <>
                     <li>
                         <Link to='/minha-conta/pedidos'>Minha Conta</Link>
+                    </li>
+                    <li>
+                        <MiniCarrinho />
                     </li>
                     <li>
                         <BotaoNavegacao
