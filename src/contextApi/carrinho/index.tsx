@@ -6,10 +6,12 @@ import { IItemCarrinho } from "../../interfaces/IITemCarrinho";
 export interface ICarrinhoContext {
     carrinho?: ICarrinho
     adicionarItemCarrinho: (item: IItemCarrinho) => void
+    removerItemCarrinho: (item: IItemCarrinho) => void
 }
 
 export const CarrinhoContext = createContext<ICarrinhoContext>({
-    adicionarItemCarrinho: () => null
+    adicionarItemCarrinho: () => null,
+    removerItemCarrinho: () => null
 })
 
 interface CarrinhoProviderProps {
@@ -34,9 +36,14 @@ const CarrinhoProvider = ({ children }: CarrinhoProviderProps) => {
         })
     }
 
+    const removerItemCarrinho = (item: IItemCarrinho) => [
+        console.log('[CarrinhoProvider] - removerItemCarrinho', item)
+
+    ]
+
     return (
 
-        <CarrinhoContext.Provider value={{ carrinho: data?.carrinho, adicionarItemCarrinho }}>
+        <CarrinhoContext.Provider value={{ carrinho: data?.carrinho, adicionarItemCarrinho, removerItemCarrinho }}>
             {children}
         </CarrinhoContext.Provider>
     )
