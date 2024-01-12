@@ -54,7 +54,7 @@ const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
                 <AbQuantidade value={item.quantidade} onChange={alterarQuantidadeItem} />
             </div>
             <div>
-                <button className="btn-excluir">
+                <button className="btn-excluir" onClick={() => removerItemCarrinho(item)}>
                     <img src={lixeira} alt="Ícone de uma lixeira" />
                 </button>
             </div>
